@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
+import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person';
-import Radium from 'radium';
 
 
 class App extends Component {
@@ -55,7 +55,7 @@ class App extends Component {
             border: '1px solid blue',
             padding: '8px',
             cursor: 'pointer',
-            ':hover':{
+            ':hover': {
                 backgroundColor: 'lightgreen',
                 color: 'black'
             }
@@ -69,36 +69,39 @@ class App extends Component {
                         return <Person click={() => this.deletePersonHandler(index)}
                                        name={person.name}
                                        age={person.age} key={person.id}
-                                       change ={(event) => this.nameChangedHandler(event, person.id)}/>
+                                       change={(event) => this.nameChangedHandler(event, person.id)}/>
                     })}
                 </div>
             );
             style.backgroundColor = 'red';
-            style[':hover']={
+            style[':hover'] = {
                 backgroundColor: 'salmon',
                 color: 'black'
             }
         }
 
         const classes = [];
-        if(this.state.persons.length <= 2){
+        if (this.state.persons.length <= 2) {
             classes.push('red');
         }
 
-        if(this.state.persons.length <= 1){
+        if (this.state.persons.length <= 1) {
             classes.push('bold');
         }
 
         return (
-            <div className="App">
-                <h1>Hi, I'm a React App</h1>
-                <p className={classes.join(' ')}>This is really working!</p>
-                <button
-                    style={style}
-                    onClick={this.tooglePersonHandler}>Toogle Persons
-                </button>
-                {persons}
-            </div>
+
+            <StyleRoot>
+                <div className="App">
+                    <h1>Hi, I'm a React App</h1>
+                    <p className={classes.join(' ')}>This is really working!</p>
+                    <button
+                        style={style}
+                        onClick={this.tooglePersonHandler}>Toogle Persons
+                    </button>
+                    {persons}
+                </div>
+            </StyleRoot>
         );
 
     }
